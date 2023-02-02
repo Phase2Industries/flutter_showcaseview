@@ -362,12 +362,13 @@ class _ShowcaseState extends State<Showcase> {
 
   /// show overlay if there is any target widget
   void showOverlay() {
+    if (!mounted) return;
     final activeStep = ShowCaseWidget.activeTargetWidget(context);
     setState(() {
       _showShowCase = activeStep == widget.key;
     });
 
-    if (activeStep == widget.key) {
+    if (activeStep == widget.key && mounted) {
       if (showCaseWidgetState.enableAutoScroll) {
         _scrollIntoView();
       }
@@ -382,13 +383,15 @@ class _ShowcaseState extends State<Showcase> {
 
   void _scrollIntoView() {
     ambiguate(WidgetsBinding.instance)?.addPostFrameCallback((timeStamp) async {
-      setState(() => _isScrollRunning = true);
-      await Scrollable.ensureVisible(
-        widget.key.currentContext!,
-        duration: showCaseWidgetState.widget.scrollDuration,
-        alignment: 0.5,
-      );
-      setState(() => _isScrollRunning = false);
+      if (mounted) {
+        setState(() => _isScrollRunning = true);
+        await Scrollable.ensureVisible(
+          widget.key.currentContext!,
+          duration: showCaseWidgetState.widget.scrollDuration,
+          alignment: 0.5,
+        );
+        if (mounted) setState(() => _isScrollRunning = false);
+      }
     });
   }
 
@@ -423,10 +426,11 @@ class _ShowcaseState extends State<Showcase> {
       timer = null;
     }
     await _reverseAnimateTooltip();
-    showCaseWidgetState.completed(widget.key);
+    if (mounted) showCaseWidgetState.completed(widget.key);
   }
 
   Future<void> _getOnTargetTap() async {
+    if (!mounted) return;
     if (widget.disposeOnTap == true) {
       await _reverseAnimateTooltip();
       showCaseWidgetState.dismiss();
@@ -437,6 +441,7 @@ class _ShowcaseState extends State<Showcase> {
   }
 
   Future<void> _getOnTooltipTap() async {
+    if (!mounted) return;
     if (widget.disposeOnTap == true) {
       await _reverseAnimateTooltip();
       showCaseWidgetState.dismiss();
@@ -447,6 +452,7 @@ class _ShowcaseState extends State<Showcase> {
   /// Reverse animates the provided tooltip or
   /// the custom container widget.
   Future<void> _reverseAnimateTooltip() async {
+    if (!mounted) return;
     setState(() => _isTooltipDismissed = true);
     await Future<dynamic>.delayed(widget.scaleAnimationDuration);
     _isTooltipDismissed = false;

@@ -142,8 +142,10 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
   @override
   void reassemble() {
     super.reassemble();
-    ambiguate(WidgetsBinding.instance)
-        ?.addPostFrameCallback((_) => syncWidgetAndOverlay());
+    if (mounted) {
+      ambiguate(WidgetsBinding.instance)
+          ?.addPostFrameCallback((_) => syncWidgetAndOverlay());
+    }
   }
 
   @override
@@ -163,7 +165,9 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
       _overlayEntry = OverlayEntry(
         builder: widget.overlayBuilder!,
       );
-      addToOverlay(_overlayEntry!);
+      if (mounted) {
+        addToOverlay(_overlayEntry!);
+      }
     } else {
       // Rebuild overlay.
       buildOverlay();
@@ -194,7 +198,7 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
     if (isShowingOverlay() && !widget.showOverlay) {
       hideOverlay();
     } else if (!isShowingOverlay() && widget.showOverlay) {
-      showOverlay();
+      if (mounted) showOverlay();
     }
   }
 
