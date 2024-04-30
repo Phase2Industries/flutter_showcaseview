@@ -69,11 +69,11 @@ class GetPosition {
         ? (findRootRenderBox(key.currentContext!)?.localToGlobal(Offset.zero) ??
             Offset.zero)
         : Offset.zero;
-    _boxOffset = _box?.localToGlobal(
+    final boxOffset = _box?.localToGlobal(
       Offset.zero,
       ancestor: rootRenderObject,
     );
-    _boxOffset = _boxOffset != null ? _boxOffset! - offset : null;
+    _boxOffset = boxOffset != null ? boxOffset - offset : null;
     debugPrint('boxOffset: $_boxOffset');
   }
 
