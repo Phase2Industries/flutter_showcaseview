@@ -253,6 +253,8 @@ class Showcase extends StatefulWidget {
   /// Defaults to 7.
   final double toolTipSlideEndDistance;
 
+  final GlobalKey? baseKey;
+
   const Showcase({
     required this.key,
     required this.description,
@@ -299,6 +301,7 @@ class Showcase extends StatefulWidget {
     this.onBarrierClick,
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
+    this.baseKey,
   })  : height = null,
         width = null,
         container = null,
@@ -340,6 +343,7 @@ class Showcase extends StatefulWidget {
     this.onBarrierClick,
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
+    this.baseKey,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -399,6 +403,7 @@ class _ShowcaseState extends State<Showcase> {
       position ??= GetPosition(
         rootRenderObject: rootRenderObject,
         key: widget.key,
+        baseKey: widget.baseKey,
         padding: widget.targetPadding,
         screenWidth: rootWidgetSize?.width ?? size.width,
         screenHeight: rootWidgetSize?.height ?? size.height,
@@ -654,7 +659,7 @@ class _TargetWidget extends StatelessWidget {
   final bool disableDefaultChildGestures;
 
   const _TargetWidget({
-    Key? key,
+    super.key,
     required this.offset,
     required this.size,
     required this.shapeBorder,
@@ -663,7 +668,7 @@ class _TargetWidget extends StatelessWidget {
     this.onDoubleTap,
     this.onLongPress,
     this.disableDefaultChildGestures = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -31,11 +31,13 @@ class GetPosition {
     required this.screenHeight,
     this.padding = EdgeInsets.zero,
     this.rootRenderObject,
+    this.baseKey,
   }) {
     getRenderBox();
   }
 
   final GlobalKey key;
+  final GlobalKey? baseKey;
   final EdgeInsets padding;
   final double screenWidth;
   final double screenHeight;
@@ -44,31 +46,17 @@ class GetPosition {
   late final RenderBox? _box;
   late final Offset? _boxOffset;
 
-  RenderBox? findRootRenderBox(BuildContext context) {
-    RenderObject? renderObject = context.findRenderObject();
-    RenderBox? lastRenderBox;
-    while (renderObject != null && renderObject.parent != null) {
-      renderObject = renderObject.parent as RenderObject;
-      if (renderObject is RenderBox) {
-        lastRenderBox = renderObject;
-      }
-    }
-    if (renderObject is RenderBox) {
-      return renderObject;
-    }
-    return lastRenderBox;
-  }
-
   void getRenderBox() {
     var renderBox = key.currentContext?.findRenderObject() as RenderBox?;
 
     if (renderBox == null) return;
 
     _box = renderBox;
-    final offset = key.currentContext != null
-        ? (findRootRenderBox(key.currentContext!)?.localToGlobal(Offset.zero) ??
-            Offset.zero)
-        : Offset.zero;
+    final baseRenderBox =
+        baseKey?.currentContext?.findRenderObject() as RenderBox?;
+    final offset =
+        baseRenderBox?.localToGlobal(Offset.zero, ancestor: rootRenderObject) ??
+            Offset.zero;
     final boxOffset = _box?.localToGlobal(
       Offset.zero,
       ancestor: rootRenderObject,
