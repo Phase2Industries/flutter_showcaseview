@@ -255,6 +255,8 @@ class Showcase extends StatefulWidget {
 
   final GlobalKey? baseKey;
 
+  final bool nested;
+
   const Showcase({
     required this.key,
     required this.description,
@@ -302,6 +304,7 @@ class Showcase extends StatefulWidget {
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
     this.baseKey,
+    this.nested = false,
   })  : height = null,
         width = null,
         container = null,
@@ -344,6 +347,7 @@ class Showcase extends StatefulWidget {
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
     this.baseKey,
+    this.nested = false,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -481,8 +485,9 @@ class _ShowcaseState extends State<Showcase> {
   void recalculateRootWidgetSize() {
     ambiguate(WidgetsBinding.instance)?.addPostFrameCallback((_) {
       if (!mounted) return;
-      final rootWidget =
-          context.findRootAncestorStateOfType<State<WidgetsApp>>();
+      final rootWidget = !widget.nested
+          ? context.findRootAncestorStateOfType<State<WidgetsApp>>()
+          : context.findRootAncestorStateOfType<State<Scaffold>>();
       rootRenderObject = rootWidget?.context.findRenderObject() as RenderBox?;
       rootWidgetSize = rootWidget == null
           ? MediaQuery.of(context).size
