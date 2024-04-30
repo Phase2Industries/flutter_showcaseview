@@ -44,16 +44,31 @@ class GetPosition {
   late final RenderBox? _box;
   late final Offset? _boxOffset;
 
+  RenderBox? findRootRenderBox(BuildContext context) {
+    RenderObject? renderObject = context.findRenderObject();
+    while (renderObject != null && renderObject.parent != null) {
+      renderObject = renderObject.parent as RenderObject;
+    }
+    if (renderObject is RenderBox) {
+      return renderObject;
+    }
+    return null;
+  }
+
   void getRenderBox() {
     var renderBox = key.currentContext?.findRenderObject() as RenderBox?;
 
     if (renderBox == null) return;
 
     _box = renderBox;
+
     _boxOffset = _box?.localToGlobal(
       Offset.zero,
-      ancestor: rootRenderObject,
+      ancestor: key.currentContext != null
+          ? (findRootRenderBox(key.currentContext!) ?? rootRenderObject)
+          : rootRenderObject,
     );
+    debugPrint('boxOffset: $_boxOffset');
   }
 
   bool _checkBoxOrOffsetIsNull({bool checkDy = false, bool checkDx = false}) {
