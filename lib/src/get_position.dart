@@ -46,13 +46,17 @@ class GetPosition {
 
   RenderBox? findRootRenderBox(BuildContext context) {
     RenderObject? renderObject = context.findRenderObject();
+    RenderBox? lastRenderBox;
     while (renderObject != null && renderObject.parent != null) {
       renderObject = renderObject.parent as RenderObject;
+      if (renderObject is RenderBox) {
+        lastRenderBox = renderObject;
+      }
     }
     if (renderObject is RenderBox) {
       return renderObject;
     }
-    return null;
+    return lastRenderBox;
   }
 
   void getRenderBox() {
