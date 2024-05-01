@@ -55,8 +55,10 @@ class GetPosition {
     final baseRenderBox =
         baseKey?.currentContext?.findRenderObject() as RenderBox?;
     final offset =
-        baseRenderBox?.localToGlobal(Offset.zero, ancestor: rootRenderObject) ??
+        (rootRenderObject as RenderBox?)?.localToGlobal(Offset.zero) ??
             Offset.zero;
+    /*baseRenderBox?.localToGlobal(Offset.zero, ancestor: rootRenderObject) ??
+            Offset.zero;*/
     final boxOffset = _box?.localToGlobal(
       Offset.zero,
       ancestor: rootRenderObject,
