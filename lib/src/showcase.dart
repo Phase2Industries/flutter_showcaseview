@@ -489,7 +489,7 @@ class _ShowcaseState extends State<Showcase> {
       if (!mounted) return;
       final rootWidget = !widget.nested
           ? context.findRootAncestorStateOfType<State<WidgetsApp>>()
-          : context.findRootAncestorStateOfType<State<Scaffold>>();
+          : context.findAncestorStateOfType<State<Scaffold>>();
       rootRenderObject = rootWidget?.context.findRenderObject() as RenderBox?;
       rootWidgetSize = rootWidget == null
           ? MediaQuery.of(context).size
