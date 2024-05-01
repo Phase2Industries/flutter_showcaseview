@@ -253,8 +253,6 @@ class Showcase extends StatefulWidget {
   /// Defaults to 7.
   final double toolTipSlideEndDistance;
 
-  final GlobalKey? baseKey;
-
   final bool nested;
 
   const Showcase({
@@ -303,7 +301,6 @@ class Showcase extends StatefulWidget {
     this.onBarrierClick,
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
-    this.baseKey,
     this.nested = false,
   })  : height = null,
         width = null,
@@ -346,7 +343,6 @@ class Showcase extends StatefulWidget {
     this.onBarrierClick,
     this.disableBarrierInteraction = false,
     this.toolTipSlideEndDistance = 7,
-    this.baseKey,
     this.nested = false,
   })  : showArrow = false,
         onToolTipClick = null,
@@ -407,7 +403,6 @@ class _ShowcaseState extends State<Showcase> {
       position ??= GetPosition(
         rootRenderObject: rootRenderObject,
         key: widget.key,
-        baseKey: widget.baseKey,
         padding: widget.targetPadding,
         screenWidth: rootWidgetSize?.width ?? size.width,
         screenHeight: rootWidgetSize?.height ?? size.height,
@@ -462,14 +457,12 @@ class _ShowcaseState extends State<Showcase> {
               .findRenderObject() as RenderBox?;
       return AnchoredOverlay(
         key: showCaseWidgetState.anchoredOverlayKey,
-        baseKey: widget.baseKey,
         rootRenderObject: rootRenderObject,
         overlayBuilder: (context, rectBound, offset) {
           final size = rootWidgetSize ?? MediaQuery.of(context).size;
           position = GetPosition(
             rootRenderObject: rootRenderObject,
             key: widget.key,
-            baseKey: widget.baseKey,
             padding: widget.targetPadding,
             screenWidth: size.width,
             screenHeight: size.height,

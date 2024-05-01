@@ -52,16 +52,10 @@ class GetPosition {
     if (renderBox == null) return;
 
     _box = renderBox;
-    /*final baseRenderBox =
-        baseKey?.currentContext?.findRenderObject() as RenderBox?; */
-    const offset =
-        /* baseRenderBox?.localToGlobal(Offset.zero, ancestor: rootRenderObject) ?? */
-        Offset.zero;
-    final boxOffset = _box?.localToGlobal(
+    _boxOffset = _box?.localToGlobal(
       Offset.zero,
       ancestor: rootRenderObject,
     );
-    _boxOffset = boxOffset != null ? boxOffset - offset : null;
     debugPrint('boxOffset: $_boxOffset');
   }
 
