@@ -462,6 +462,7 @@ class _ShowcaseState extends State<Showcase> {
           position = GetPosition(
             rootRenderObject: rootRenderObject,
             key: widget.key,
+            baseKey: widget.baseKey,
             padding: widget.targetPadding,
             screenWidth: size.width,
             screenHeight: size.height,
