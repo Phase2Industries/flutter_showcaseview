@@ -456,6 +456,7 @@ class _ShowcaseState extends State<Showcase> {
     if (_enableShowcase) {
       return AnchoredOverlay(
         key: showCaseWidgetState.anchoredOverlayKey,
+        baseKey: widget.baseKey,
         rootRenderObject: rootRenderObject,
         overlayBuilder: (context, rectBound, offset) {
           final size = rootWidgetSize ?? MediaQuery.of(context).size;
