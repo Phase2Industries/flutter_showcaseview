@@ -454,6 +454,12 @@ class _ShowcaseState extends State<Showcase> {
   @override
   Widget build(BuildContext context) {
     if (_enableShowcase) {
+      rootRenderObject ??= !widget.nested
+          ? showCaseWidgetState.rootRenderObject
+          : context
+              .findAncestorStateOfType<State<Scaffold>>()
+              ?.context
+              .findRenderObject() as RenderBox?;
       return AnchoredOverlay(
         key: showCaseWidgetState.anchoredOverlayKey,
         baseKey: widget.baseKey,
