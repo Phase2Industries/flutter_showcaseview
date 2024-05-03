@@ -256,6 +256,7 @@ class Showcase extends StatefulWidget {
   final GlobalKey? baseKey;
 
   final bool nested;
+  final Offset? tooltipOffset;
 
   const Showcase({
     required this.key,
@@ -305,6 +306,7 @@ class Showcase extends StatefulWidget {
     this.toolTipSlideEndDistance = 7,
     this.baseKey,
     this.nested = false,
+    this.tooltipOffset,
   })  : height = null,
         width = null,
         container = null,
@@ -348,6 +350,7 @@ class Showcase extends StatefulWidget {
     this.toolTipSlideEndDistance = 7,
     this.baseKey,
     this.nested = false,
+    this.tooltipOffset,
   })  : showArrow = false,
         onToolTipClick = null,
         scaleAnimationDuration = const Duration(milliseconds: 300),
@@ -623,6 +626,7 @@ class _ShowcaseState extends State<Showcase> {
           ToolTipWidget(
             position: position,
             offset: offset,
+            tooltipOffset: widget.tooltipOffset,
             screenSize: screenSize,
             title: widget.title,
             titleAlignment: widget.titleAlignment,

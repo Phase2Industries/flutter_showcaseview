@@ -65,9 +65,10 @@ class ToolTipWidget extends StatefulWidget {
   final TextDirection? titleTextDirection;
   final TextDirection? descriptionTextDirection;
   final double toolTipSlideEndDistance;
+  final Offset? tooltipOffset;
 
   const ToolTipWidget({
-    Key? key,
+    super.key,
     required this.position,
     required this.offset,
     required this.screenSize,
@@ -99,7 +100,8 @@ class ToolTipWidget extends StatefulWidget {
     this.titleTextDirection,
     this.descriptionTextDirection,
     this.toolTipSlideEndDistance = 7,
-  }) : super(key: key);
+    this.tooltipOffset,
+  });
 
   @override
   State<ToolTipWidget> createState() => _ToolTipWidgetState();
@@ -194,7 +196,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
       } else if ((leftPositionValue) < _kDefaultPaddingFromParent) {
         return _kDefaultPaddingFromParent;
       } else {
-        return leftPositionValue;
+        return leftPositionValue + (widget.tooltipOffset?.dx ?? 0);
       }
     }
     return null;
@@ -207,7 +209,9 @@ class _ToolTipWidgetState extends State<ToolTipWidget>
 
       final left = _getLeft();
       if (left == null || (left + width) > widget.screenSize.width) {
-        final rightPosition = widget.position!.getCenter() + (width * 0.5);
+        final rightPosition = widget.position!.getCenter() +
+            (width * 0.5) +
+            (widget.tooltipOffset?.dx ?? 0);
 
         return (rightPosition + width) > widget.screenSize.width
             ? _kDefaultPaddingFromParent
