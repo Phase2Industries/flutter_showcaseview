@@ -62,7 +62,6 @@ class GetPosition {
       ancestor: rootRenderObject,
     );
     _boxOffset = boxOffset != null ? boxOffset - offset : null;
-    debugPrint('boxOffset: $_boxOffset');
   }
 
   bool _checkBoxOrOffsetIsNull({bool checkDy = false, bool checkDx = false}) {
