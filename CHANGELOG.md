@@ -1,8 +1,37 @@
-## [2.0.1] (Unreleased)
-- Add support for enabling/disabling showcase globally.
-- Added support of manual vertical tooltip position.
-- Added PR title validation workflow
+## [2.1.1]
+- Fixed [#425](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/425) - Unhandled breaking change in v2.1.0
+- Fixed [#428](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/428) - _ShowcaseState.recalculateRootWidgetSize null value
+
+## [2.1.0]
+- Feature [#420](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/pull/420) - Dart SDK Upgrade
+- Fixed [#419](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/pull/419) - Suppress Text Scale Factor Warning
+- Improvement [#413](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/pull/413) - Improved `Showcase` class
+- Fixed [#369](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/pull/369) - Fixed ToolTip Slide Transition
+- Fixed [#388](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/388) - Can't scroll horizontal list with showcase
+- Fixed [#366](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/366) - Null check operator used on a null value
+- Fixed [#389](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/389) - Ignore extra `_nextIfAny` function operations
+- Fixed [#409](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/pull/409) - Fixed target hit area.
+- Improvement [#370](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/pull/370) - Improved `GetPosition` class.
+- Feature [#387](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/387) - Provided barrier click disable functionality for a particular showcase.
+- Fixed [#383](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/383) - Targeted widget focusing issue when we applying size constraint on root widget(MaterialApp).
+
+## [2.0.3]
+- Feature [#148](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/148) - Add feasibility to add `textDirection` of `title` and `description`.
+- Feature [#272](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/272) - Add barrier click callback.
+- Fixed [#360](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/360) - child constructor invocation to get rid out of flutter lint warning.
+
+## [2.0.2]
+- Fixed [#335](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/335) - Flutter inspector makes screen grey
+- Fixed [#346](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/346) - Dont respond to any clicks in target.
+
+## [2.0.1]
+- Feature [#306](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/pull/306) - Added support of manual vertical tooltip position.
+- Fixed [#318](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/318) - Add support for enable/disable showcase globally.
 - Fixed [#316](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/316) - Add title and description padding
+- Fixed [#330](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/330) - Overlay not showing in flutter 3.7.0
+- Fixed [#288](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/pull/288) - Take in account view insets (such as keyboard)
+- Fixed [#334](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/334) - Move code line to resolve no context issue
+- Add PR title validation workflow
 
 ## [2.0.0+1]
 - Fixed [#237](https://github.com/SimformSolutionsPvtLtd/flutter_showcaseview/issues/261) - Feature added to enable/disable default gesture of ShowcaseView child using `disableDefaultTargetGestures` parameter
